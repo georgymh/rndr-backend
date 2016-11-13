@@ -107,8 +107,8 @@ def send_custom_query(access_key, secret_key, target_id, new_metadata):
 
 # API Endpoints
 
-ACCESS_KEY = os.environ.get('ACCESS_KEY', '')
-SECRET_KEY = os.environ.get('SECRET_KEY', '')
+ACCESS_KEY = environ.get('ACCESS_KEY', '')
+SECRET_KEY = environ.get('SECRET_KEY', '')
 
 @app.route("/target", methods=['POST'])
 def update_target():
