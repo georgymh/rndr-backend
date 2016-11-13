@@ -5,6 +5,7 @@ import hmac
 import base64
 from email.utils import formatdate
 import sys
+import os
 
 import json
 from flask import Flask, request
@@ -120,4 +121,6 @@ def update_target():
         return 'No new metadata passed', 400
 
 if __name__ == "__main__":
-    app.run()
+    app.debug = True
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
