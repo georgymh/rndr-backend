@@ -104,8 +104,8 @@ def send_custom_query(access_key, secret_key, target_id, new_metadata):
 
 # API Endpoints
 
-ACCESS_KEY = os.environ['ACCESS_KEY']
-SECRET_KEY = os.environ['SECRET_KEY']
+ACCESS_KEY = os.environ.get('ACCESS_KEY', '')
+SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 @app.route("/target", methods=['POST'])
 def update_target():
@@ -121,6 +121,4 @@ def update_target():
         return 'No new metadata passed', 400
 
 if __name__ == "__main__":
-    app.debug = True
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(debug=True)
