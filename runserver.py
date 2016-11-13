@@ -1,3 +1,10 @@
+"""
+This script runs the FlaskWebProject application using a development server.
+"""
+
+from os import environ
+from FlaskWebProject import app
+
 import httplib
 import hashlib
 import mimetypes
@@ -5,11 +12,7 @@ import hmac
 import base64
 from email.utils import formatdate
 import sys
-import os
-
 import json
-from flask import Flask, request
-app = Flask(__name__)
 
 # Vuforia Related Scripts
 
@@ -120,5 +123,11 @@ def update_target():
     else:
         return 'No new metadata passed', 400
 
-if __name__ == "__main__":
-    app.run(debug=True)
+
+if __name__ == '__main__':
+    HOST = environ.get('SERVER_HOST', 'localhost')
+    try:
+        PORT = int(environ.get('SERVER_PORT', '5555'))
+    except ValueError:
+        PORT = 5555
+    app.run(HOST, PORT)
